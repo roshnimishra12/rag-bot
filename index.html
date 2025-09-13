@@ -1,0 +1,103 @@
+<!-- frontend/index.html -->
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title style="background-color: #0a66c2">RAG Chatbot - Google Docs</title>
+		<style>
+			* {
+				margin-top: 40px;
+			}
+			body {
+				font-family: Arial, sans-serif;
+				max-width: 900px;
+				margin: 20px auto;
+				background-color: #5d5858;
+				color: white;
+				text-align: center;
+			}
+			.container {
+				display: flex;
+				gap: 20px;
+			}
+			.col {
+				flex: 1;
+				border: 1px solid #eee;
+				padding: 12px;
+				border-radius: 6px;
+			}
+			button {
+				padding: 8px 12px;
+				border-radius: 9px;
+			}
+			.doc-list {
+				max-height: 300px;
+				overflow: auto;
+			}
+			.chat {
+				max-height: 400px;
+				overflow: auto;
+				border: 1px solid #ddd;
+				padding: 8px;
+			}
+			.message {
+				margin-bottom: 8px;
+			}
+			.you {
+				color: #111;
+			}
+			.bot {
+				color: #0a66c2;
+			}
+		</style>
+	</head>
+	<body>
+		<h2 style="color: rgb(182, 95, 95); padding: 10px; border-radius: 5px">
+			RAG Chatbot — Google Docs Integration
+		</h2>
+		<div>
+			<a href="/login"><button>Sign in with Google</button></a>
+		</div>
+
+		<div style="margin-top: 12px">
+			<label>Session ID (from redirect query param after login):</label>
+			<input
+				id="session"
+				style="width: 70%"
+				placeholder="session_id from URL (optional)" />
+			<button onclick="listDocs()">List Docs</button>
+		</div>
+
+		<div
+			class="container"
+			style="margin-top: 12px">
+			<div class="col">
+				<h3>Your Google Docs</h3>
+				<div
+					id="docs"
+					class="doc-list">
+					Click "List Docs" after login.
+				</div>
+				<div style="margin-top: 8px">
+					<button onclick="addSelected()">Add Selected Documents to KB</button>
+				</div>
+			</div>
+
+			<div class="col">
+				<h3>Chat</h3>
+				<div
+					id="chat"
+					class="chat"></div>
+				<div style="margin-top: 8px">
+					<input
+						id="query"
+						style="width: 80%"
+						placeholder="Ask a question..." />
+					<button onclick="sendQuery()">Send</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="/static/app.js"></script>
+	</body>
+</html>
